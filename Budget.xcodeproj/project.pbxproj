@@ -13,10 +13,12 @@
 		601F7D3529607305000E7457 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 601F7D3429607305000E7457 /* Assets.xcassets */; };
 		601F7D3829607305000E7457 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 601F7D3629607305000E7457 /* LaunchScreen.storyboard */; };
 		601F7D42296074C5000E7457 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601F7D41296074C5000E7457 /* CategoryTableViewController.swift */; };
+		601F7D4729607D2D000E7457 /* AddBudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601F7D4629607D2D000E7457 /* AddBudgetViewController.swift */; };
+		601F7D49296087BE000E7457 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601F7D48296087BE000E7457 /* String+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		601F7D2529607305000E7457 /* Budged.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budged.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		601F7D2529607305000E7457 /* Budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		601F7D2829607305000E7457 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		601F7D2A29607305000E7457 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		601F7D3229607305000E7457 /* Budged.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Budged.xcdatamodel; sourceTree = "<group>"; };
@@ -24,6 +26,8 @@
 		601F7D3729607305000E7457 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		601F7D3929607305000E7457 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		601F7D41296074C5000E7457 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
+		601F7D4629607D2D000E7457 /* AddBudgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetViewController.swift; sourceTree = "<group>"; };
+		601F7D48296087BE000E7457 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +44,7 @@
 		601F7D1C29607305000E7457 = {
 			isa = PBXGroup;
 			children = (
-				601F7D2729607305000E7457 /* Budged */,
+				601F7D2729607305000E7457 /* Budget */,
 				601F7D2629607305000E7457 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,31 +52,65 @@
 		601F7D2629607305000E7457 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				601F7D2529607305000E7457 /* Budged.app */,
+				601F7D2529607305000E7457 /* Budget.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		601F7D2729607305000E7457 /* Budged */ = {
+		601F7D2729607305000E7457 /* Budget */ = {
+			isa = PBXGroup;
+			children = (
+				601F7D4A296087C5000E7457 /* Extension */,
+				601F7D4529607CE4000E7457 /* Screen */,
+				601F7D4429607CB1000E7457 /* Source */,
+				601F7D4329607CA5000E7457 /* Controller */,
+				601F7D3929607305000E7457 /* Info.plist */,
+				601F7D3129607305000E7457 /* Budged.xcdatamodeld */,
+			);
+			path = Budget;
+			sourceTree = "<group>";
+		};
+		601F7D4329607CA5000E7457 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				601F7D41296074C5000E7457 /* CategoryTableViewController.swift */,
+				601F7D4629607D2D000E7457 /* AddBudgetViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		601F7D4429607CB1000E7457 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				601F7D2829607305000E7457 /* AppDelegate.swift */,
 				601F7D2A29607305000E7457 /* SceneDelegate.swift */,
-				601F7D41296074C5000E7457 /* CategoryTableViewController.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		601F7D4529607CE4000E7457 /* Screen */ = {
+			isa = PBXGroup;
+			children = (
 				601F7D3429607305000E7457 /* Assets.xcassets */,
 				601F7D3629607305000E7457 /* LaunchScreen.storyboard */,
-				601F7D3929607305000E7457 /* Info.plist */,
-				601F7D3129607305000E7457 /* Budged.xcdatamodeld */,
 			);
-			path = Budged;
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		601F7D4A296087C5000E7457 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				601F7D48296087BE000E7457 /* String+Extensions.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		601F7D2429607305000E7457 /* Budged */ = {
+		601F7D2429607305000E7457 /* Budget */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 601F7D3C29607305000E7457 /* Build configuration list for PBXNativeTarget "Budged" */;
+			buildConfigurationList = 601F7D3C29607305000E7457 /* Build configuration list for PBXNativeTarget "Budget" */;
 			buildPhases = (
 				601F7D2129607305000E7457 /* Sources */,
 				601F7D2229607305000E7457 /* Frameworks */,
@@ -82,9 +120,9 @@
 			);
 			dependencies = (
 			);
-			name = Budged;
+			name = Budget;
 			productName = Budged;
-			productReference = 601F7D2529607305000E7457 /* Budged.app */;
+			productReference = 601F7D2529607305000E7457 /* Budget.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -102,7 +140,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 601F7D2029607305000E7457 /* Build configuration list for PBXProject "Budged" */;
+			buildConfigurationList = 601F7D2029607305000E7457 /* Build configuration list for PBXProject "Budget" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -115,7 +153,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				601F7D2429607305000E7457 /* Budged */,
+				601F7D2429607305000E7457 /* Budget */,
 			);
 		};
 /* End PBXProject section */
@@ -141,6 +179,8 @@
 				601F7D3329607305000E7457 /* Budged.xcdatamodeld in Sources */,
 				601F7D2B29607305000E7457 /* SceneDelegate.swift in Sources */,
 				601F7D42296074C5000E7457 /* CategoryTableViewController.swift in Sources */,
+				601F7D49296087BE000E7457 /* String+Extensions.swift in Sources */,
+				601F7D4729607D2D000E7457 /* AddBudgetViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,7 +248,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -262,7 +302,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -281,7 +321,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WL3K4A7DH8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Budged/Info.plist;
+				INFOPLIST_FILE = Budget/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -292,7 +332,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.barisdilekci.Budged;
+				PRODUCT_BUNDLE_IDENTIFIER = com.barisdilekci.Budget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -309,7 +349,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WL3K4A7DH8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Budged/Info.plist;
+				INFOPLIST_FILE = Budget/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -320,7 +360,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.barisdilekci.Budged;
+				PRODUCT_BUNDLE_IDENTIFIER = com.barisdilekci.Budget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -331,7 +371,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		601F7D2029607305000E7457 /* Build configuration list for PBXProject "Budged" */ = {
+		601F7D2029607305000E7457 /* Build configuration list for PBXProject "Budget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				601F7D3A29607305000E7457 /* Debug */,
@@ -340,7 +380,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		601F7D3C29607305000E7457 /* Build configuration list for PBXNativeTarget "Budged" */ = {
+		601F7D3C29607305000E7457 /* Build configuration list for PBXNativeTarget "Budget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				601F7D3D29607305000E7457 /* Debug */,

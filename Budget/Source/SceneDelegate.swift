@@ -12,7 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     
-    lazy var persistenContainer: NSPersistentContainer = {
+    lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Budged")
         container.loadPersistentStores { description, error in
             if let error = error {
@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         window.makeKeyAndVisible()
-        let navController = UINavigationController(rootViewController:  CategoryTableViewController(persistenContainer: persistenContainer))
+        let navController = UINavigationController(rootViewController:  CategoryTableViewController(persistentContainer: persistentContainer))
         window.rootViewController = navController
         self.window = window
     }
