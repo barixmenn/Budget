@@ -13,6 +13,18 @@ class AddBudgetViewController: UIViewController {
     
     private var persistentContainer: NSPersistentContainer
     
+    init(persistentContainer: NSPersistentContainer) {
+        self.persistentContainer = persistentContainer
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    //MARK: - UI Elements
+    
     lazy var nameTextField: UITextField = {
         let textfield = UITextField()
         textfield.placeholder = "Budget name"
@@ -48,16 +60,10 @@ class AddBudgetViewController: UIViewController {
         label.numberOfLines = 0
         return label
     }()
+   
     
-    init(persistentContainer: NSPersistentContainer) {
-        self.persistentContainer = persistentContainer
-        super.init(nibName: nil, bundle: nil)
-    }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
@@ -66,6 +72,8 @@ class AddBudgetViewController: UIViewController {
         setupUI()
     }
     
+    
+    //MARK: - Functions
     private var isFormValid: Bool {
         guard let name = nameTextField.text, let amount = amountTextField.text else {
             return false
@@ -74,9 +82,27 @@ class AddBudgetViewController: UIViewController {
         return !name.isEmpty && !amount.isEmpty && amount.isNumeric && amount.isGreatorThan(0)
     }
     
+    private func saveBudgetCategory() {
+        guard let name = nameTextField.text , let amount = amountTextField.text else {return}
+        
+        do {
+            let budgetCategory = BudgedCategory(context: persistentContainer.viewContext)
+            budgetCategory.name = name
+            budgetCategory.amount = Double(amount) ?? 0.0
+            try persistentContainer.viewContext.save()
+            //dismiss
+            self.dismiss(animated: true)
+            
+        }catch {
+            errorMessageLabel.text = "Unable to save budget category!"
+        }
+    }
+    
+    
+    
     @objc func addBudgetButtonPressed(_ sender: UIButton) {
         if isFormValid {
-            // save budget category
+            saveBudgetCategory()
         } else {
             errorMessageLabel.text = "Unable to save budget. Budget name and amount is required."
         }
@@ -100,8 +126,8 @@ class AddBudgetViewController: UIViewController {
         stackView.addArrangedSubview(errorMessageLabel)
         
         // add constraints
-        nameTextField.widthAnchor.constraint(equalToConstant: 300).isActive = true
-        amountTextField.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        nameTextField.widthAnchor.constraint(equalToConstant: 400).isActive = true
+        amountTextField.widthAnchor.constraint(equalToConstant: 400).isActive = true
         addBudgetButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         // add button click
