@@ -15,6 +15,8 @@
 		601F7D42296074C5000E7457 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601F7D41296074C5000E7457 /* CategoryTableViewController.swift */; };
 		601F7D4729607D2D000E7457 /* AddBudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601F7D4629607D2D000E7457 /* AddBudgetViewController.swift */; };
 		601F7D49296087BE000E7457 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601F7D48296087BE000E7457 /* String+Extensions.swift */; };
+		607314132962056E00D6FC53 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607314122962056E00D6FC53 /* DetailsViewController.swift */; };
+		607314152962149400D6FC53 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607314142962149400D6FC53 /* Double+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		601F7D41296074C5000E7457 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		601F7D4629607D2D000E7457 /* AddBudgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetViewController.swift; sourceTree = "<group>"; };
 		601F7D48296087BE000E7457 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		607314122962056E00D6FC53 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		607314142962149400D6FC53 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,7 @@
 			children = (
 				601F7D41296074C5000E7457 /* CategoryTableViewController.swift */,
 				601F7D4629607D2D000E7457 /* AddBudgetViewController.swift */,
+				607314122962056E00D6FC53 /* DetailsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -101,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				601F7D48296087BE000E7457 /* String+Extensions.swift */,
+				607314142962149400D6FC53 /* Double+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -175,10 +181,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				607314152962149400D6FC53 /* Double+Extensions.swift in Sources */,
 				601F7D2929607305000E7457 /* AppDelegate.swift in Sources */,
 				601F7D3329607305000E7457 /* Budged.xcdatamodeld in Sources */,
 				601F7D2B29607305000E7457 /* SceneDelegate.swift in Sources */,
 				601F7D42296074C5000E7457 /* CategoryTableViewController.swift in Sources */,
+				607314132962056E00D6FC53 /* DetailsViewController.swift in Sources */,
 				601F7D49296087BE000E7457 /* String+Extensions.swift in Sources */,
 				601F7D4729607D2D000E7457 /* AddBudgetViewController.swift in Sources */,
 			);

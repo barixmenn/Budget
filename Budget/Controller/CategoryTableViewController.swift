@@ -69,9 +69,18 @@ class CategoryTableViewController: UITableViewController {
         
         var configuration = cell.defaultContentConfiguration()
         configuration.text = budgetCategory.name
+        configuration.secondaryText = budgetCategory.amount.formatAsCurrency()
         cell.contentConfiguration = configuration
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let budgetCategory = fetchedResultsController.object(at: indexPath)
+        // perform navigation
+        self.navigationController?.pushViewController(DetailsViewController(budgetCategory: budgetCategory, persistentContainer: persistentContainer), animated: true)
+        
     }
 
 }
@@ -79,7 +88,7 @@ class CategoryTableViewController: UITableViewController {
 extension CategoryTableViewController: NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.  ()
+        tableView.reloadData()
     }
     
 }
