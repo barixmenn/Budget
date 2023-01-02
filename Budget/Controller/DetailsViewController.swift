@@ -12,11 +12,25 @@ class DetailsViewController: UIViewController {
     
     private var persistentContainer: NSPersistentContainer
     private var budgetCategory : BudgedCategory
-    
+    private var fetchedResultsController: NSFetchedResultsController<Transaction>!
+
     init(budgetCategory: BudgedCategory, persistentContainer: NSPersistentContainer) {
         self.budgetCategory = budgetCategory
         self.persistentContainer = persistentContainer
         super.init(nibName: nil, bundle: nil)
+        
+        let request = Transaction.fetchRequest()
+        request.predicate = NSPredicate(format: "category = %@", budgetCategory)
+        request.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: false)]
+        
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -165,15 +179,21 @@ class DetailsViewController: UIViewController {
     //MARK: - Extensions
 extension DetailsViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        (fetchedResultsController.fetchedObjects ?? []).count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionTableViewCell", for: indexPath)
+        let transaction = fetchedResultsController.object(at: indexPath)
         
+        var configuration = cell.defaultContentConfiguration()
+        configuration.text = transaction.name
+        configuration.secondaryText = transaction.amount.formatAsCurrency()
+        cell.contentConfiguration = configuration
         return cell
+        
     }
-    
-    
-    
+}
+
+extension DetailsViewController : NSFetchedResultsControllerDelegate {
 }
