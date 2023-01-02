@@ -122,6 +122,40 @@ class DetailsViewController: UIViewController {
         tableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         tableView.heightAnchor.constraint(equalToConstant: 600).isActive = true
         
+        
+        //Target
+        saveTransactionButton.addTarget(self, action: #selector(saveTransactionButtonPressed), for: .touchUpInside)
+    }
+    
+    private var isFormValid : Bool {
+        guard let name = nameTextField.text, let amount = amountTextField.text else {return false}
+        return !name.isEmpty && !amount.isEmpty && amount.isNumeric && amount.isGreatorThan(0)
+    }
+    
+    private func saveTransaction() {
+        guard let name = nameTextField.text, let amount = amountTextField.text else {return}
+        let transaction = Transaction(context: persistentContainer.viewContext)
+        transaction.name = name
+        transaction.amount = Double(amount) ?? 0.0
+        transaction.category = budgetCategory
+        transaction.dateCreated = Date()
+        
+        do {
+            try persistentContainer.viewContext.save()
+            tableView.reloadData()
+        } catch {
+            debugPrint(error.localizedDescription)
+            errorMessageLabel.text = "Unable to save transaction"
+        }
+
+    }
+    
+    @objc func saveTransactionButtonPressed(_ sender: UIButton) {
+        if isFormValid {
+            saveTransaction()
+        } else {
+            errorMessageLabel.text = "Make sure name and amount"
+        }
     }
   
 }
