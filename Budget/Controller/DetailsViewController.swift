@@ -86,6 +86,21 @@ class DetailsViewController: UIViewController {
         label.text = budgetCategory.amount.formatAsCurrency()
         return label
     }()
+    
+    lazy var transactionTotalLabel : UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private var transactionTotal :Double {
+        let transaction = fetchedResultsController.fetchedObjects ?? []
+        return transaction.reduce(0) { result, transaction  in
+            result + transaction.amount
+        }
+    }
+    
+    
      
 
 
@@ -98,6 +113,7 @@ class DetailsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         setupUI()
+        updateTransactionTotal()
     }
     
    //MARK: - Functions
@@ -119,6 +135,7 @@ class DetailsViewController: UIViewController {
         stackView.setCustomSpacing(50, after: amountLabel)
         stackView.addArrangedSubview(nameTextField)
         stackView.addArrangedSubview(amountTextField)
+        stackView.addArrangedSubview(transactionTotalLabel)
         stackView.addArrangedSubview(saveTransactionButton)
         stackView.addArrangedSubview(errorMessageLabel)
         stackView.addArrangedSubview(tableView)
@@ -146,6 +163,8 @@ class DetailsViewController: UIViewController {
         return !name.isEmpty && !amount.isEmpty && amount.isNumeric && amount.isGreatorThan(0)
     }
     
+    
+    
     private func saveTransaction() {
         guard let name = nameTextField.text, let amount = amountTextField.text else {return}
         let transaction = Transaction(context: persistentContainer.viewContext)
@@ -157,6 +176,7 @@ class DetailsViewController: UIViewController {
         do {
             try persistentContainer.viewContext.save()
             tableView.reloadData()
+            resetForm()
         } catch {
             debugPrint(error.localizedDescription)
             errorMessageLabel.text = "Unable to save transaction"
@@ -171,7 +191,15 @@ class DetailsViewController: UIViewController {
             errorMessageLabel.text = "Make sure name and amount"
         }
     }
-  
+    private func updateTransactionTotal() {
+        transactionTotalLabel.text = transactionTotal.formatAsCurrency()
+    }
+    private func resetForm() {
+        nameTextField.text = ""
+        amountTextField.text = ""
+        errorMessageLabel.text = ""
+    }
+   
 }
 
 
@@ -196,4 +224,8 @@ extension DetailsViewController: UITableViewDelegate, UITableViewDataSource{
 }
 
 extension DetailsViewController : NSFetchedResultsControllerDelegate {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        updateTransactionTotal()
+        tableView.reloadData()
+    }
 }
