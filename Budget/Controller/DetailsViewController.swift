@@ -199,13 +199,22 @@ class DetailsViewController: UIViewController {
         amountTextField.text = ""
         errorMessageLabel.text = ""
     }
-   
+    private func deleteTransaction(_ transaction: Transaction) {
+        persistentContainer.viewContext.delete(transaction)
+        
+        do {
+            try persistentContainer.viewContext.save()
+        } catch {
+            errorMessageLabel.text = "Unable to delete transaction."
+        }
+    }
 }
 
 
 
     //MARK: - Extensions
 extension DetailsViewController: UITableViewDelegate, UITableViewDataSource{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         (fetchedResultsController.fetchedObjects ?? []).count
     }
@@ -219,6 +228,14 @@ extension DetailsViewController: UITableViewDelegate, UITableViewDataSource{
         configuration.secondaryText = transaction.amount.formatAsCurrency()
         cell.contentConfiguration = configuration
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            let transaction = fetchedResultsController.object(at: indexPath)
+            deleteTransaction(transaction)
+        }
         
     }
 }

@@ -56,6 +56,16 @@ class CategoryTableViewController: UITableViewController {
         title = "Budget"
     }
     
+    private func deleteTransaction(_ category: BudgedCategory) {
+        persistentContainer.viewContext.delete(category)
+        
+        do {
+            try persistentContainer.viewContext.save()
+        } catch {
+            debugPrint("Unable to delete category.")
+        }
+    }
+    
     // UITableViewDataSource delegate functions
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (fetchedResultsController.fetchedObjects ?? []).count
@@ -69,7 +79,6 @@ class CategoryTableViewController: UITableViewController {
         
         var configuration = cell.defaultContentConfiguration()
         configuration.text = budgetCategory.name
-        configuration.secondaryText = budgetCategory.amount.formatAsCurrency()
         cell.contentConfiguration = configuration
         
         return cell
@@ -80,6 +89,14 @@ class CategoryTableViewController: UITableViewController {
         let budgetCategory = fetchedResultsController.object(at: indexPath)
         // perform navigation
         self.navigationController?.pushViewController(DetailsViewController(budgetCategory: budgetCategory, persistentContainer: persistentContainer), animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            let transaction = fetchedResultsController.object(at: indexPath)
+            deleteTransaction(transaction)
+        }
         
     }
 
