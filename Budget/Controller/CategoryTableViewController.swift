@@ -11,6 +11,7 @@ import CoreData
 
 class CategoryTableViewController: UITableViewController {
 
+    //MARK: - Properties
     private var persistentContainer: NSPersistentContainer
     private var fetchedResultsController: NSFetchedResultsController<BudgedCategory>!
     
@@ -35,6 +36,7 @@ class CategoryTableViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -43,6 +45,8 @@ class CategoryTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "BudgetTableViewCell")
     }
     
+    
+    //MARK: - Functions
     @objc func showAddBudgetCategory(_ sender: UIBarButtonItem) {
         let navController = UINavigationController(rootViewController: AddBudgetViewController(persistentContainer: persistentContainer))
         present(navController, animated: true)
@@ -102,6 +106,7 @@ class CategoryTableViewController: UITableViewController {
 
 }
 
+//MARK: - Extensions 
 extension CategoryTableViewController: NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
